@@ -6,4 +6,8 @@ Rails.application.routes.draw do
     delete 'logout', to: 'devise/sessions#destroy'
   end
   
+  resources :orders
+  
+  root 'orders#new'
+  
 end

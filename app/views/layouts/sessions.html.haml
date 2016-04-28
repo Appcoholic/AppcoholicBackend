@@ -6,7 +6,7 @@
     
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-  
+    
     = stylesheet_link_tag 'https://bootswatch.com/sandstone/bootstrap.min.css'
     = javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'
     
@@ -17,16 +17,27 @@
     /= favicon_link_tag 'favicon.ico'
     
 %body
-    .container
-        .row
-            .col-md-10.col-md-offset-1
-                // NAVBAR
-                = render 'layouts/navbar'
 
-                // ALERTS
-                = render 'layouts/alerts'
+    .container
+
+        .row
+            .col-md-4.col-md-offset-4
+                
+                %br
+                %br
+                %br
+                            
+                #logo.text-center
+                    .row
+                        .col-md-12
+                            = link_to root_path do
+                                %h1 Likor
+                                    
                 
                 // CONTENT
                 .panel.panel-default
                     .panel-body
+                        
                         = yield
+        
+                

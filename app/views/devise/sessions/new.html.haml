@@ -1,0 +1,26 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    
+    %h3.text-center Iniciar Sesion
+    
+    // ALERTS
+    = render 'layouts/alerts'
+    
+    .form-group
+        .input-group
+            %span.input-group-addon
+                %i.fa.fa-user
+            = f.email_field :email, autofocus: true, placeholder: 'E-mail', class: 'form-control'
+
+    .form-group
+        .input-group
+            %span.input-group-addon
+                %i.fa.fa-lock
+            = f.password_field :password, autocomplete: "off", placeholder: 'Contraseña', class: 'form-control'
+
+    .form-group.text-center
+        = f.submit "Iniciar Sesion", class: 'form-control btn btn-success'
+    
+    
+    .text-center
+        %p= link_to 'Olvidaste Tu Cotnraseña?', new_user_password_path
+        

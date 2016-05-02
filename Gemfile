@@ -27,6 +27,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'haml'
+gem 'carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

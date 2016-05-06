@@ -1,6 +1,29 @@
-%h3 
-    Productos
-    .pull-right
-        = link_to new_product_path, class: 'btn btn-default btn-xs' do
-            %i.fa.fa-plus
-            Agregar Producto
+.page-header
+    %h2
+        Products
+        .pull-right
+            = link_to new_product_path, class: 'btn btn-default btn-xs' do
+                %i.fa.fa-plus
+                Add New Product
+
+
+- @products.each do |product|
+    .row
+        .col-md-3
+            = image_tag product.photo_url(:thumb).to_s, class: 'img-rounded'
+        .col-md-9
+            %h4= link_to product.name, product
+            %ul.list-inline
+                %li
+                    %small.text-muted= product.product_id
+                    
+                %li
+                    %small.text-info
+                        %strong
+                            L.
+                            = product.unit_price
+                        
+            
+            %p= product.description
+    
+    %hr

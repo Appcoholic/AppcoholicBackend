@@ -1,0 +1,34 @@
+.page-header
+    %h2
+        = @product.name
+    
+        .btn-group.pull-right
+            = link_to [:edit, @product], class: 'btn btn-default btn-xs' do
+                %i.fa.fa-pencil
+                Edit
+                
+            = link_to @product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                %i.fa.fa-trash
+                Delete
+                
+.row
+    .col-md-3
+        = image_tag @product.photo_url(:thumb).to_s, class: 'img-rounded'
+    .col-md-9
+        %ul.list-unstyled
+            %li
+                %strong Product ID:
+                = @product.product_id
+                
+            %li
+                %strong Unit Price:
+                L.
+                = @product.unit_price
+    
+        %p= @product.description
+
+%hr
+
+= link_to products_path do
+    %i.fa.fa-arrow-left
+    Back

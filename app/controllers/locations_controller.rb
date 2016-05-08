@@ -25,10 +25,13 @@ class LocationsController < ApplicationController
   end
 
   def show
+    # Location's map marker
     @marker = Gmaps4rails.build_markers(@location) do |location, marker|
       marker.lat location.latitude
       marker.lng location.longitude
     end
+    
+    @products = Product.all
   end
   
   def edit

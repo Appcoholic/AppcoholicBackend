@@ -12,6 +12,13 @@
         .form-group
             = f.label :password_confirmation
             = f.password_field :password_confirmation, class: 'form-control'
+        
+        %legend Roles
+        
+        .form-group
+            - Role.all.each do |role|
+                = check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id)
+                = role.name
             
         .form-group
             = f.submit ( f.object.new_record? ? "Add User" : "Save Changes"), class: 'btn btn-success'

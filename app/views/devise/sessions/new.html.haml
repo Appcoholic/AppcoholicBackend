@@ -1,6 +1,6 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     
-    %h3.text-center Iniciar Sesion
+    %h3.text-center Log In
     
     // ALERTS
     = render 'layouts/alerts'
@@ -18,9 +18,9 @@
             = f.password_field :password, autocomplete: "off", placeholder: 'Contraseña', class: 'form-control'
 
     .form-group.text-center
-        = f.submit "Iniciar Sesion", class: 'form-control btn btn-success'
+        = f.submit "Log In", class: 'form-control btn btn-success'
     
     
     .text-center
-        %p= link_to 'Olvidaste Tu Cotnraseña?', new_user_password_path
+        %p= link_to 'Forgot Your Password?', new_user_password_path
         

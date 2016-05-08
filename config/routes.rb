@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'locations/index'
+
+  get 'locations/new'
+
+  get 'locations/show'
+
   devise_for :users
   
   devise_scope :user do
@@ -8,6 +14,7 @@ Rails.application.routes.draw do
   
   resources :orders
   resources :products
+  resources :locations
   
   root 'orders#new'
   

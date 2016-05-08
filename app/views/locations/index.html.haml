@@ -1,0 +1,23 @@
+.page-header
+    %h2
+        Locations
+        .pull-right
+            = link_to new_location_path, class: 'btn btn-default btn-xs' do
+                %i.fa.fa-plus
+                Add New Location
+                
+- @locations.each do |location|
+    .media.well
+        .media-left.media-middle
+            = link_to location, class: 'media-object' do
+                %i.fa.fa-map-marker.fa-4x
+        .media-body
+            %h3= link_to location.location_id, location, class: 'media-heading'
+            %p.small
+                = location.latitude
+                ,
+                = location.longitude
+                
+            %p.small= location.address
+    
+    %hr

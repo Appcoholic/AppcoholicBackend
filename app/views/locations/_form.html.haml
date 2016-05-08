@@ -1,0 +1,22 @@
+= form_for @location do |f|
+    
+    .well
+        .form-group
+            = f.label :location_id, 'Location ID'
+            = f.text_field :location_id, class: 'form-control'
+            
+        .form-group
+            = f.label :address
+            = f.text_field :address, class: 'form-control'
+            
+        .form-group
+            = f.label :latitude
+            = f.text_field :latitude, class: 'form-control'
+            
+        .form-group
+            = f.label :longitude
+            = f.text_field :longitude, class: 'form-control'
+            
+        .form-group
+            = f.submit ( f.object.new_record? ? "Add Location" : "Save Changes"), class: 'btn btn-success'
+            = link_to 'Cancel', :back, class: 'btn btn-default'

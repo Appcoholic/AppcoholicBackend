@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :products
   resources :locations
+  resources :inventories
   
   root 'orders#new'
   

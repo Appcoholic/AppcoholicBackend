@@ -1,20 +1,28 @@
 .row
     .col-md-12
+        
+        .pull-right
+            = link_to new_inventory_path do
+                %i.fa.fa-plus
+                Add Inventory
+    
         %table.table.table-responsive.table-striped.table-hover
             %thead
                 %tr
+                    %th Product
                     %th Product ID
                     %th Unit Price
                     %th Stock Qty.
                     %th
             %tbody
-                - @products.each do |product|
+                - @inventories.each do |item|
                     %tr
-                        %td= link_to product.product_id, product
+                        %td= link_to item.product.name, item.product
+                        %td= item.product.product_id
                         %td
                             L.
-                            = product.unit_price
-                        %td
+                            = item.product.unit_price
+                        %td= item.quantity
                         %td
                             .btn-group
     

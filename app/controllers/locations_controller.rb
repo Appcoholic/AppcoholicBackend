@@ -31,7 +31,7 @@ class LocationsController < ApplicationController
       marker.lng location.longitude
     end
     
-    @products = Product.all
+    @inventories = @location.inventories
   end
   
   def edit

@@ -1,0 +1,40 @@
+.page-header
+    %h2
+        = @location.location_id
+    
+        .btn-group.pull-right
+            = link_to [:edit, @location], class: 'btn btn-default btn-xs' do
+                %i.fa.fa-pencil
+                Edit
+                
+            = link_to @location, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                %i.fa.fa-trash
+                Delete
+
+#tabs
+    %ul{ class: "nav nav-tabs", role: "tablist" }
+        %li{ role: "presentation", class: "active" }
+            %a{ href: "#details", "aria-controls": "details", role: "tab", "data-toggle": "tab" } 
+                %i.fa.fa-info
+                Detail
+            
+        %li{ role: "presentation" }
+            %a{ href: "#inventory", "aria-controls": "inventory", role: "tab", "data-toggle": "tab" } 
+                %i.fa.fa-archive
+                Inventory
+            
+    / TAB PANES
+    .tab-content
+        %div{ role: "tabpanel", class: "tab-pane fade in active", id: "details" }
+            %br
+            = render 'location_detail'
+        
+        %div{ role: "tabpanel", class: "tab-pane fade", id: "inventory" }
+            %br
+            = render 'inventory'
+
+%hr
+
+= link_to locations_path do
+    %i.fa.fa-arrow-left
+    Back

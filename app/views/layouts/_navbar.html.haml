@@ -33,24 +33,29 @@
                                 
                         %li.divider
                                 
-                        %li.dropdown-header Employees
+                        %li.dropdown-header Users
                         %li
-                            = link_to root_path do
+                            = link_to users_path do
                                 %i.fa.fa-user
-                                View Employees
+                                View Users
                                 
                         %li
-                            = link_to root_path do
+                            = link_to new_user_path do
                                 %i.fa.fa-plus
-                                Add New Employee
+                                Add New User
                         
                         %li.divider
                         
                         %li.dropdown-header Inventory
                         %li
-                            = link_to root_path do
-                                %i.fa.fa-archive
-                                View Inventory
+                            = link_to locations_path do
+                                %i.fa.fa-map-marker
+                                View Locations
+                                
+                        %li
+                            = link_to new_inventory_path do
+                                %i.fa.fa-plus
+                                Add New Inventory
                                 
                         %li.divider
                         %li.dropdown-header Orders

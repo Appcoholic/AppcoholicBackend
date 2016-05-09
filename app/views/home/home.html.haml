@@ -1,0 +1,76 @@
+
+/ Features
+%i.fa.fa-home
+%section#feature.text-blue
+    .container
+        .row.clearfix
+            .col-md-12.column.p_title
+                = image_tag 'whiskey_icon128.png', class: 'img-responsive center-block'
+            
+                %h2.text-center Conoce Nuestros Beneficios
+                
+                %p.text-center.lead Conoce porque escoger Likor es tu mejor opcion.
+            
+            .col-md-12.column
+                .row.clearfix
+                    / RIGHT COLUMN
+                    .col-sm-4.col-md-4.column.text-center
+            
+                        / #1
+                        .item-icon
+                            %i.fa.fa-moon-o.fa-2x
+                        %h3 Mas Seguridad
+                        %p
+                            Ya no tienes que preocuparte por salir en altas y peligrosas horas de la noche.
+                                
+                        / #2
+                        .item-icon
+                            %i.fa.fa-ambulance.fa-2x
+                        %h3 Menos Accidentes
+                        %p
+                            Ayudamos a evitar el conducir en estado de ebriedad, reduciendo los accidentes viales.
+                
+                        / #3
+                        .item-icon
+                            %i.fa.fa-home.fa-2x
+                        %h3 Mas Comodidad
+                        %p
+                            Escoje entre una gran gama de productos, entregados directamente a tu hogar.
+          
+                    / IPHONE IMAGE
+                    .col-sm-4.col-md-4.column
+                        = image_tag 'iPhone.png', class: 'img-responsive'
+                    
+                    / LEFT COLUMN
+                    .col-sm-4.col-md-4.column.text-center
+                        / #1
+                        .item-icon
+                            %i.fa.fa-bolt.fa-2x
+                        %h3 Servicio Rapido
+                        %p
+                            Has tus pedidos en cuestion de segundos, utilizando nuestra aplicacion para movil, o directamente desde nuestro sistema web.
+            
+                        / #2
+                        .item-icon
+                            %i.fa.fa-credit-card.fa-2x
+                        %h3 Pagos Seguros
+                        %p
+                            Todos los pagos son por tarjeta de credito, a traves de nuestro sistema seguro, ya no tienes que preocuparte por lidiar con efectivo ni cambio.
+                        
+                        / #3
+                        .item-icon
+                            %i.fa.fa-clock-o.fa-2x
+                        %h3 Servicio en Horas Tarde
+                        %p
+                            Ofrecemos servicio aun despues de las 2am. Puedes estar seguro que la fiesta continuara, en la comodidad y seguridad de tu hogar.
+        
+        %br
+        %br
+        
+        .row
+            .col-md-12
+                .text-center
+                    = link_to root_path, class: 'btn btn-success btn-lg' do
+                        Haz Tu Orden
+    / /container
+/ end feature

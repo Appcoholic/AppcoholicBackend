@@ -1,0 +1,32 @@
+/ Header
+%section#header.container-fluid.text-white
+    .container
+        .row.clearfix
+            .scroll.col-md-6.column
+                %h1.text-center
+                    %i#logo.fa.fa-paper-plane-o
+                
+                %h1.main_title East is the perfect landing page for your apps.
+                
+                %p.text-left.lead
+                    Explore how your products can be a champion. Includes multiple colors and variations. Available exclusively on WrapBootstrap marketplace.
+        
+                %a.btn.btn-lg.btn-lead{:href => "#download"}
+                    %span.glyphicon.glyphicon-cloud-download
+                    Download Now
+                
+                %a.btn.btn-lg.btn-link{:href => "#feature"}
+                    %span.glyphicon.glyphicon-circle-arrow-right
+                    Learn More
+      
+            .col-md-6.column
+                #main-slider.flexslider
+                    %ul.slides
+                        %li
+                            %img.img-responsive{:alt => "Slide One", :src => "images/mockup-iphone6.png"}/
+                        %li
+                            %img.img-responsive{:alt => "Slide Two", :src => "images/mockup-iphone6_2.png"}/
+                        %li
+                            %img.img-responsive{:alt => "Slide Three", :src => "images/mockup-ipad-air.png"}/
+    / /container
+/ end header

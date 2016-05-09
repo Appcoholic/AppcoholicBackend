@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :locations
   resources :inventories
   
-  root 'orders#new'
+  root 'home#home'
   
 end

@@ -29,5 +29,11 @@ module Workspace
       #Devise::RegistrationsController.layout "registrations"
       Devise::PasswordsController.layout proc{ |controller| user_signed_in? ? "application" : "sessions" }
     end
+    
+    # Enable asset pipeline manifest files
+    config.assets.precompile += %w(
+      home.css
+    )
+    
   end
 end

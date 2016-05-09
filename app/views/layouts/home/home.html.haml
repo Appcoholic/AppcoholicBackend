@@ -26,4 +26,9 @@
     /= favicon_link_tag 'favicon.ico'
     
 %body
+    .container-fluid
+        .pull-right
+            = link_to login_path do 
+                %i.fa.fa-sign-in
+    
     = yield

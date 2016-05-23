@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-    layout '/home/home'
+    layout '/home/home', only: [:home]
     
     def home
     end

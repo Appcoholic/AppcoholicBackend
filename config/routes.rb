@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :locations
   resources :inventories
   
+  get 'dashboard', to: 'products#index'
+  
   root 'home#home'
   
 end

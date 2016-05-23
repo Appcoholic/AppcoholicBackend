@@ -18,7 +18,7 @@
             - if user_signed_in?
                 %li.dropdown
                     %a{ :class => 'dropdown-toggle', "data-toggle" => 'dropdown', :role => 'button', "aria-expanded" => false }
-                        %strong= current_user.email 
+                        = current_user.email 
                         %span.caret
                     %ul{:class => 'dropdown-menu', :role => 'menu' }
                         %li.dropdown-header Products

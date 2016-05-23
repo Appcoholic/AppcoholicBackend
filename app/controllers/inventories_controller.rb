@@ -21,7 +21,7 @@ class InventoriesController < ApplicationController
        
         respond_to do |format|
             if @inventory.save
-                format.html { redirect_to locations_path, :flash => { :success => 'Inventory entry created successfully.' } }
+                format.html { redirect_to @inventory.location, :flash => { :success => 'Inventory entry created successfully.' } }
             else
                 format.html { render 'new', :flash => { :danger => 'Error creating inventory entry.' } }
             end 

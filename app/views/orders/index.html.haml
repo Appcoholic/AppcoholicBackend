@@ -14,7 +14,7 @@
         - @orders.each_with_index do |order, index|
             %tr
                 %td= index+1
-                %td= order.token
+                %td= link_to order.token, order
                 %td= order.address
                 %td= order.created_at.strftime("%A %B %d %Y")
                 %td= display_order_status(order.status)

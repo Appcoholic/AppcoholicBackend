@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
     
-    layout "home/home", only: [:new]
+    layout "home/home", only: [:new, :track_order, :order_status]
+    
     before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource
+    load_and_authorize_resource except: [:track_order, :order_status]
     before_action :find_order, only: [:show, :edit, :update, :destroy]
     
     def index
@@ -40,7 +41,13 @@ class OrdersController < ApplicationController
         end 
     end
     
-    def order_complete
+    def track_order
+    end
+    
+    def order_status
+        @token = params[:token]
+        
+        @order = Order.find_by_token(@token)
     end
     
     private

@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   resources :inventories
   
   get 'dashboard', to: 'products#index'
-  get 'order_complete', to: 'orders#order_complete'
+  
+  get 'track_order', to: 'orders#track_order'
+  get 'order_status', to: 'orders#order_status'
+  
   
   root 'home#home'
   

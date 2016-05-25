@@ -1,0 +1,27 @@
+.container
+    .row
+        .col-md-8.col-md-offset-2
+            .panel.panel-default
+                .panel-body
+                    .page-header
+                        %h1.text-center Track Your Order
+                        
+                    %p.text-center 
+                        Enter your order's
+                        %strong tracking code
+                        below to check the status of your order.
+                    
+                    .row
+                        .col-md-12
+                            = form_tag({controller: "orders", action: "order_status"}, method: "get", class: 'form-inline text-center') do
+                                .form-group
+                                    = label_tag 'Token', nil, class: 'sr-only'
+                                    = text_field_tag :token, '', class: 'form-control'
+                                = submit_tag 'Track', class: 'btn btn-default'
+                    
+                    %hr
+                    
+                    = link_to root_path do
+                        %i.fa.fa-arrow-left
+                        Back
+                    

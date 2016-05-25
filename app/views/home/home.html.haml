@@ -69,6 +69,11 @@
             .col-md-12
                 .text-center
                     = link_to new_order_path, class: 'btn btn-success btn-lg' do
-                        Haz Tu Orden
+                        %i.fa.fa-cart-plus
+                        Place Your Order
+                        
+                    = link_to track_order_path, class: 'btn btn-info btn-lg' do
+                        %i.fa.fa-search
+                        Track Your Order
     / /container
 / end feature

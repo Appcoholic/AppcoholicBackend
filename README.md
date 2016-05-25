@@ -1,4 +1,4 @@
-# Likor
+# Appcoholic Backend
 
 ## Useful Resources
 

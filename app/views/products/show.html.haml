@@ -3,13 +3,15 @@
         = @product.name
     
         .btn-group.pull-right
-            = link_to [:edit, @product], class: 'btn btn-default btn-xs' do
-                %i.fa.fa-pencil
-                Edit
-                
-            = link_to @product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
-                %i.fa.fa-trash
-                Delete
+            - if can? :update, @product
+                = link_to [:edit, @product], class: 'btn btn-default btn-xs' do
+                    %i.fa.fa-pencil
+                    Edit
+            
+            - if can? :destroy, @product
+                = link_to @product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                    %i.fa.fa-trash
+                    Delete
                 
 .row
     .col-md-3

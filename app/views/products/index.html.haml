@@ -2,9 +2,10 @@
     %h2
         Products
         .pull-right
-            = link_to new_product_path, class: 'btn btn-default btn-xs' do
-                %i.fa.fa-plus
-                Add New Product
+            - if can? :create, Product
+                = link_to new_product_path, class: 'btn btn-default btn-xs' do
+                    %i.fa.fa-plus
+                    Add New Product
 
 
 - @products.each do |product|

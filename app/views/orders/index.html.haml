@@ -20,10 +20,13 @@
                 %td= display_order_status(order.status)
                 %td
                     .btn-group
-                        = link_to order, class: 'btn btn-xs btn-default' do
-                            %i.fa.fa-eye
-                        = link_to [:edit, order], class: 'btn btn-xs btn-warning' do
-                            %i.fa.fa-pencil
-                        = link_to order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' do
-                            %i.fa.fa-trash
+                        - if can? :read, order
+                            = link_to order, class: 'btn btn-xs btn-default' do
+                                %i.fa.fa-eye
+                        - if can? :update, order
+                            = link_to [:edit, order], class: 'btn btn-xs btn-warning' do
+                                %i.fa.fa-pencil
+                        - if can? :destroy, order
+                            = link_to order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' do
+                                %i.fa.fa-trash
     

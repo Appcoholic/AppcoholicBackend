@@ -3,13 +3,15 @@
         = @order.token
     
         .btn-group.pull-right
-            = link_to [:edit, @order], class: 'btn btn-default btn-xs' do
-                %i.fa.fa-pencil
-                Edit
-                
-            = link_to @order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
-                %i.fa.fa-trash
-                Delete
+            - if can? :update, @order
+                = link_to [:edit, @order], class: 'btn btn-default btn-xs' do
+                    %i.fa.fa-pencil
+                    Edit
+            
+            - if can? :destroy, @order
+                = link_to @order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                    %i.fa.fa-trash
+                    Delete
                 
 .row
     .col-md-6

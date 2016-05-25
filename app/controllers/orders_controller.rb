@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
     
     layout "home/home", only: [:new]
+    before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+    load_and_authorize_resource
     before_action :find_order, only: [:show, :edit, :update, :destroy]
     
     def index

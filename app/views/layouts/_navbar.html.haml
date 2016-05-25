@@ -22,50 +22,57 @@
                         %span.caret
                     %ul{:class => 'dropdown-menu', :role => 'menu' }
                         %li.dropdown-header Products
-                        %li
-                            = link_to products_path do
-                                %i.fa.fa-glass
-                                View Products
-                        %li
-                            = link_to new_product_path do
-                                %i.fa.fa-plus
-                                Add New Product
+                        - if can? :read, Product
+                            %li
+                                = link_to products_path do
+                                    %i.fa.fa-glass
+                                    View Products
+                        
+                        - if can? :create, Product
+                            %li
+                                = link_to new_product_path do
+                                    %i.fa.fa-plus
+                                    Add New Product
                                 
                         %li.divider
                                 
                         %li.dropdown-header Users
-                        %li
-                            = link_to users_path do
-                                %i.fa.fa-user
-                                View Users
-                                
-                        %li
-                            = link_to new_user_path do
-                                %i.fa.fa-plus
-                                Add New User
+                        - if can? :read, User
+                            %li
+                                = link_to users_path do
+                                    %i.fa.fa-user
+                                    View Users
+                        
+                        - if can? :create, User
+                            %li
+                                = link_to new_user_path do
+                                    %i.fa.fa-plus
+                                    Add New User
                         
                         %li.divider
                         
                         %li.dropdown-header Inventory
-                        %li
-                            = link_to locations_path do
-                                %i.fa.fa-map-marker
-                                View Locations
-                                
-                        %li
-                            = link_to new_inventory_path do
-                                %i.fa.fa-plus
-                                Add New Inventory
+                        - if can? :read, Location
+                            %li
+                                = link_to locations_path do
+                                    %i.fa.fa-map-marker
+                                    View Locations
+                        
+                        - if can? :create, Inventory
+                            %li
+                                = link_to new_inventory_path do
+                                    %i.fa.fa-plus
+                                    Add New Inventory
                                 
                         %li.divider
                         %li.dropdown-header Orders
-                        %li
-                            = link_to orders_path do
-                                %i.fa.fa-shopping-cart
-                                View Orders
+                        - if can? :read, Order
+                            %li
+                                = link_to orders_path do
+                                    %i.fa.fa-shopping-cart
+                                    View Orders
                             
                         
-                                
                         %li.divider
                         
                         %li

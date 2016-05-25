@@ -2,9 +2,10 @@ class OrdersController < ApplicationController
     
     layout "home/home", only: [:new, :track_order, :order_status]
     
-    before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:track_order, :order_status]
     load_and_authorize_resource except: [:track_order, :order_status]
-    before_action :find_order, only: [:show, :edit, :update, :destroy]
+    
+    before_action :find_order, only: [:show, :edit, :update, :destroy, :assign_courier]
     
     def index
         @orders = Order.all
@@ -48,6 +49,22 @@ class OrdersController < ApplicationController
         @token = params[:token]
         
         @order = Order.find_by_token(@token)
+    end
+    
+    def assign_courier
+        @courier = User.find(params[:courier_id])
+        
+        @order.courier = @courier
+        
+        respond_to do |format|
+            if @order.save
+                format.html { redirect_to @order, :flash => { :success => 'Courier successfully assigned to order.' } }
+                format.json { render :show, status: :assigned, location: @order }
+            else
+                format.html { render :new, :flash => { :danger => 'There was an error trying to assign the courier to this order. Please try again.' } }
+                format.json { render json: @order.errors, status: :unprocessable_entity }
+            end
+        end
     end
     
     private

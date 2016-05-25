@@ -12,7 +12,20 @@
                 = link_to @order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
                     %i.fa.fa-trash
                     Delete
-                
+
+.row
+    .col-md-12
+        .pull-right
+            %ul.list-inline
+                - if can? :assign, User
+                    %li
+                        %a{ href: "#", "data-toggle": "modal", "data-target": "#assign-courier" }
+                            %i.fa.fa-user-plus
+                            Assign/Change Courier
+                            
+                    
+                    
+
 .row
     .col-md-6
         %p
@@ -25,6 +38,8 @@
             
         %p
             %strong Assigned Courier:
+            = "#{@order.courier.blank? ? 'None' : @order.courier.email }"
+            
             
         %p
             %strong Status:
@@ -66,3 +81,6 @@
 = link_to orders_path do
     %i.fa.fa-arrow-left
     Back
+    
+/ ASSIGN COURIER MODAL
+= render 'assign_courier_modal'

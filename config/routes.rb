@@ -9,11 +9,18 @@ Rails.application.routes.draw do
   
   resources :users
   resources :orders
-  resources :products
+  
+  resources :products do
+    member do
+      get :price
+    end
+  end
+  
   resources :locations
   resources :inventories
   
   get 'dashboard', to: 'products#index'
+  get 'order_complete', to: 'orders#order_complete'
   
   root 'home#home'
   

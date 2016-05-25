@@ -1,0 +1,17 @@
+%tr.nested-fields
+    %td{ width: "60%" }
+        = f.select :product_id,
+                Product.all.collect {|p| [p.name, p.id, 
+                {'data-unit-price'=>p.unit_price}]}, 
+                { include_blank: false },
+                { class: "form-control input-sm product-select"} 
+        
+    %td.text-center{ width: "20%", style: "padding: 10px;" }
+        %span.product-price
+        
+    %td.text-center{ width: "10%", style: "padding: 10px;" }
+        = f.text_field :quantity, class: 'form-control input-sm'
+    
+    %td.text-center{ width: "10%", style: "padding: 10px;" }
+        = link_to_remove_association f, class: 'btn btn-warning btn-sm' do
+            %i.fa.fa-trash

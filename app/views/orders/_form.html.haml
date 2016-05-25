@@ -1,0 +1,42 @@
+= form_for @order do |f|
+    .row
+        .col-md-6
+            .form-group
+                = f.label :address
+                = f.text_field :address, class: 'form-control'
+    
+    .row
+        .col-md-12
+            %legend Products
+            
+            .well
+                %table.table#orders_table
+                    %thead
+                        %tr
+                            %th Product
+                            %th.text-center Unit Price
+                            %th.text-center Quantity
+                            %th
+                    
+                    %tbody#order_items
+                        = f.fields_for :order_items do |item|
+                            = render 'order_item_fields', :f => item
+                        
+                = link_to_add_association f, :order_items, :"data-association-insertion-node" => "tbody#order_items" do
+                    %i.fa.fa-plus
+                    Add Product
+                        
+    %hr
+    
+    .form-group
+        = f.label :comments
+        = f.text_area :comments, rows: 5, class: 'form-control'
+    
+    %hr
+    
+    .form-group
+        %h4#total 
+            Total:
+        
+    .form-group
+        = f.submit "Send Order", class: 'btn btn-success'

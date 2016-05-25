@@ -32,7 +32,7 @@ module Workspace
     
     # Enable asset pipeline manifest files
     config.assets.precompile += %w(
-      home.css
+      home.scss
     )
     
   end

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
     
     before_action :authenticate_user!
     load_and_authorize_resource
-    before_action :find_product, only: [:show, :edit, :update, :destroy]
+    before_action :find_product, only: [:show, :edit, :update, :destroy, :price]
     
     def index
         @products = Product.all
@@ -45,6 +45,12 @@ class ProductsController < ApplicationController
         respond_to do |format|
             format.html { redirect_to products_path, notice: 'Product was successfully deleted.' }
         end 
+    end
+    
+    def price
+        respond_to do |format|
+           format.json { render json: @product, only: [:unit_price] } 
+        end
     end
     
     private

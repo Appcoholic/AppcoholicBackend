@@ -29,7 +29,12 @@
 %body
     .container-fluid
         .pull-right
-            = link_to login_path do 
-                %i.fa.fa-sign-in
+            - if !user_signed_in?
+                = link_to login_path do 
+                    %i.fa.fa-sign-in
+            - else
+                = link_to dashboard_path do
+                    %i.fa.fa-arrow-circle-right
+                    Go to Dashboard
     
     = yield

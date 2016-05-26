@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     before_action :authenticate_user!, except: [:new, :create, :track_order, :order_status]
     load_and_authorize_resource except: [:new, :track_order, :order_status]
     
-    before_action :find_order, only: [:show, :edit, :update, :destroy, :assign_courier, :accept_order, :cancel_order, :complete_order]
+    before_action :find_order, except: [:index, :new, :create, :track_order, :order_status]
     
     def index
         @orders = Order.all

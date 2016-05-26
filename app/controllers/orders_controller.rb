@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     before_action :find_order, except: [:index, :new, :create, :track_order, :order_status]
     
     def index
-        @orders = Order.all
+        @orders = Order.all.order("created_at DESC")
     end
     
     def new

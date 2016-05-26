@@ -10,6 +10,7 @@ class Ability
             can :read, Product
             can :read, Order
             can :accept_order, Order
+            can :complete_order, Order
         else
             can :create, Order
             can :track_order, Order

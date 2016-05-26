@@ -21,11 +21,14 @@ Rails.application.routes.draw do
   
   get 'dashboard', to: 'products#index'
   
+  # Additional Orders routes
   get 'track_order', to: 'orders#track_order'
   get 'order_status', to: 'orders#order_status'
   get 'assign_courier', to: 'orders#assign_courier'
   get 'accept_order', to: 'orders#accept_order'
   get 'cancel_order', to: 'orders#cancel_order'
+  get 'complete_order', to: 'orders#complete_order', as: 'complete_order'
+  
   
   root 'home#home'
   

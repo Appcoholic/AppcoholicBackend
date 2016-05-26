@@ -35,6 +35,12 @@
                             %i.fa.fa-times
                             Cancel Order
                             
+                - if (can? :complete_order, @order) && (@order.status == "Delivering")
+                    %li
+                        = link_to complete_order_path(:id => @order.id), method: :get, data: { confirm: 'Are you sure?' } do
+                            %i.fa.fa-check
+                            Mark as Completed
+                            
                     
                     
 

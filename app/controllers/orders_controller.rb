@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     before_action :authenticate_user!, except: [:new, :create, :track_order, :order_status]
     load_and_authorize_resource except: [:new, :track_order, :order_status]
     
-    before_action :find_order, only: [:show, :edit, :update, :destroy, :assign_courier, :accept_order, :cancel_order]
+    before_action :find_order, only: [:show, :edit, :update, :destroy, :assign_courier, :accept_order, :cancel_order, :complete_order]
     
     def index
         @orders = Order.all
@@ -99,6 +99,22 @@ class OrdersController < ApplicationController
                 format.json { render :show, status: :canceled, location: @order }
             else
                 format.html { render :new, :flash => { :danger => 'There was an error trying to cancel this order. Please try again.' } }
+                format.json { render json: @order.errors, status: :unprocessable_entity }
+            end
+        end
+    end
+    
+    def complete_order
+        # Change the order's status to delivering
+        @order.status = :Completed
+        
+        # Save the order
+        respond_to do |format|
+            if @order.save
+                format.html { redirect_to @order, :flash => { :success => 'The order has been marked as completed.' } }
+                format.json { render :show, status: :completed, location: @order }
+            else
+                format.html { render :new, :flash => { :danger => 'There was an error trying to mark this order as completed. Please try again.' } }
                 format.json { render json: @order.errors, status: :unprocessable_entity }
             end
         end

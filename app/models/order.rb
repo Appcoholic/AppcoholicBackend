@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+    enum status: [:Pending, :Completed, :Cancelled]
+    
     validates :address, :presence => true
     
     belongs_to :courier, :class_name => 'User', :foreign_key => 'courier_id'

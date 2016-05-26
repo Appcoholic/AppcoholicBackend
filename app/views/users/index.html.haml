@@ -19,7 +19,7 @@
         - @users.each_with_index do |user, index|
             %tr
                 %td= index+1
-                %td= user.email
+                %td= link_to user.email, user
                 %td
                     - user.roles.each do |role|
                         = role.name
@@ -28,8 +28,13 @@
                         = user.last_sign_in_at.strftime("%A %B %d %Y")
                 %td
                     .btn-group
-                        = link_to [:edit, user], class: 'btn btn-xs btn-default' do
-                            %i.fa.fa-pencil
-                        = link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' do
-                            %i.fa.fa-trash
+                        - if can? :read, user
+                            = link_to user, class: 'btn btn-xs btn-default' do
+                                %i.fa.fa-eye
+                        - if can? :update, user
+                            = link_to [:edit, user], class: 'btn btn-xs btn-warning' do
+                                %i.fa.fa-pencil
+                        - if can? :destroy, user
+                            = link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' do
+                                %i.fa.fa-trash
     

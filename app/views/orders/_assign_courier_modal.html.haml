@@ -19,6 +19,10 @@
                     .form-group
                         = label_tag 'Courier'
                         = select_tag :courier_id, options_from_collection_for_select(User.with_role(:courier), :id, :email), class: 'form-control'
+                        
+                    .alert.alert-warning.text-center
+                        %i.fa.fa-exclamation-triangle
+                        Couriers will be notified when they are assigned to an order.
         
                 .modal-footer
                     = submit_tag 'Assign Courier', class: 'btn btn-primary'

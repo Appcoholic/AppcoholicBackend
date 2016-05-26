@@ -15,7 +15,19 @@
                     = f.label :password_confirmation
                     = f.password_field :password_confirmation, class: 'form-control'
                     
+                .form-group
+                    = f.label :identity
+                    = f.text_field :identity, class: 'form-control'
+                    
             .col-md-6
+                .form-group
+                    = f.label :phone
+                    = f.text_field :phone, class: 'form-control'
+                    
+                .form-group
+                    = f.label :address
+                    = f.text_field :address, class: 'form-control'
+            
                 .form-group
                     = f.label :avatar
                     %br/

@@ -23,7 +23,7 @@
                             %i.fa.fa-user-plus
                             Assign/Change Courier
                             
-                - if (can? :accept_order, @order) && (@order.status == "Pending")
+                - if (can? :accept_order, @order) && (@order.status == "Pending") && ( !current_user.has_role? :admin)
                     %li
                         %a{ href: "#", "data-toggle": "modal", "data-target": "#accept-order" }
                             %i.fa.fa-hand-pointer-o

@@ -2,17 +2,17 @@ module OrdersHelper
     
     def display_order_status status
         case status
-            when 0
+            when "Pending"
                 content_tag :span, :class => "label label-warning" do
-                    content_tag(:i, '', :class => "fa fa-clock-o") + ' Pending'
+                    content_tag(:i, '', :class => "fa fa-clock-o") + " #{status}"
                 end
-            when 1
+            when "Completed"
                 content_tag :span, :class => "label label-success" do
-                    content_tag(:i, '', :class => "fa fa-check") + ' Completed'
+                    content_tag(:i, '', :class => "fa fa-check") + " #{status}"
                 end
-            when 2
+            when "Cancelled"
                 content_tag :span, :class => "label label-danger" do
-                    content_tag(:i, '', :class => "fa fa-times") + ' Cancelled'
+                    content_tag(:i, '', :class => "fa fa-times") + " #{status}"
                 end
         end
     end

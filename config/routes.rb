@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   
   get 'track_order', to: 'orders#track_order'
   get 'order_status', to: 'orders#order_status'
-  
+  get 'assign_courier', to: 'orders#assign_courier'
   
   root 'home#home'
   

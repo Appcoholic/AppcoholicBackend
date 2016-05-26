@@ -9,9 +9,11 @@ class Ability
         elsif user.has_role? :courier
             can :read, Product
             can :read, Order
+            can :accept_order, Order
+            can :complete_order, Order
         else
             can :create, Order
-            can :track, Order
+            can :track_order, Order
         end
     end
     

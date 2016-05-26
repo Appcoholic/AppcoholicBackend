@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-    enum status: [:Pending, :Completed, :Cancelled]
+    enum status: [:Pending, :Delivering, :Completed, :Cancelled]
     
     validates :address, :presence => true
     

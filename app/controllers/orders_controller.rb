@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
     
     layout "home/home", only: [:new, :track_order, :order_status]
     
-    before_action :authenticate_user!, except: [:new, :track_order, :order_status]
+    before_action :authenticate_user!, except: [:new, :create, :track_order, :order_status]
     load_and_authorize_resource except: [:new, :track_order, :order_status]
     
     before_action :find_order, only: [:show, :edit, :update, :destroy, :assign_courier, :accept_order, :cancel_order]
@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
         
         respond_to do |format|
             if @order.save
-                format.html { redirect_to order_complete_path, :flash => { :success => 'Order has been placed successfully.' } }
+                format.html { redirect_to order_status_path, :flash => { :success => 'Order has been placed successfully.' } }
                 format.json { render :show, status: :created, location: @order }
             else
                 format.html { render :new, :flash => { :danger => 'There was an error trying to place your order. Please try again.' } }

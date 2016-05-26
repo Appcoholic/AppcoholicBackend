@@ -35,7 +35,12 @@
                 = f.submit "Save Changes", class: 'btn btn-success'
         
         .col-md-6
-            = f.label 'Lalala'
+            .form-group
+                = f.label :avatar
+                %br/
+                = image_tag @user.avatar.url(:thumb), class: 'img-rounded'
+                %br
+                = f.file_field :avatar
     
 %hr
 

@@ -12,7 +12,7 @@ class Ability
             can :accept_order, Order
         else
             can :create, Order
-            can :track, Order
+            can :track_order, Order
         end
     end
     

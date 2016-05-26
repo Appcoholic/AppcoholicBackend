@@ -17,11 +17,23 @@
     .col-md-12
         .pull-right
             %ul.list-inline
-                - if can? :assign, User
+                - if (can? :assign_courier, User) && (@order.status == "Pending")
                     %li
                         %a{ href: "#", "data-toggle": "modal", "data-target": "#assign-courier" }
                             %i.fa.fa-user-plus
                             Assign/Change Courier
+                            
+                - if (can? :accept_order, @order) && (@order.status == "Pending")
+                    %li
+                        %a{ href: "#", "data-toggle": "modal", "data-target": "#accept-order" }
+                            %i.fa.fa-hand-pointer-o
+                            Accept Order
+                            
+                - if (can? :cancel_order, @order) && (['Delivering', 'Pending'].include? @order.status)
+                    %li
+                        %a{ href: "#", "data-toggle": "modal", "data-target": "#cancel-order" }
+                            %i.fa.fa-times
+                            Cancel Order
                             
                     
                     
@@ -84,3 +96,5 @@
     
 / ASSIGN COURIER MODAL
 = render 'assign_courier_modal'
+= render 'accept_order_modal'
+= render 'cancel_order_modal'

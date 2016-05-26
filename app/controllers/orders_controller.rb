@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     before_action :authenticate_user!, except: [:new, :track_order, :order_status]
     load_and_authorize_resource except: [:new, :track_order, :order_status]
     
-    before_action :find_order, only: [:show, :edit, :update, :destroy, :assign_courier]
+    before_action :find_order, only: [:show, :edit, :update, :destroy, :assign_courier, :accept_order, :cancel_order]
     
     def index
         @orders = Order.all
@@ -62,6 +62,43 @@ class OrdersController < ApplicationController
                 format.json { render :show, status: :assigned, location: @order }
             else
                 format.html { render :new, :flash => { :danger => 'There was an error trying to assign the courier to this order. Please try again.' } }
+                format.json { render json: @order.errors, status: :unprocessable_entity }
+            end
+        end
+    end
+    
+    def accept_order
+        @courier = current_user
+        
+        # Set the courier to the order
+        @order.courier = @courier
+        
+        # Change the order's status to delivering
+        @order.status = :Delivering
+        
+        # Save the order
+        respond_to do |format|
+            if @order.save
+                format.html { redirect_to @order, :flash => { :success => 'The order has been successully assigned to you. Please deliver it as soon as possible.' } }
+                format.json { render :show, status: :accepted, location: @order }
+            else
+                format.html { render :new, :flash => { :danger => 'There was an error trying to assign this order to you. Please try again.' } }
+                format.json { render json: @order.errors, status: :unprocessable_entity }
+            end
+        end
+    end
+    
+    def cancel_order
+        # Change the order's status to delivering
+        @order.status = :Cancelled
+        
+        # Save the order
+        respond_to do |format|
+            if @order.save
+                format.html { redirect_to @order, :flash => { :success => 'The order has been cancelled.' } }
+                format.json { render :show, status: :canceled, location: @order }
+            else
+                format.html { render :new, :flash => { :danger => 'There was an error trying to cancel this order. Please try again.' } }
                 format.json { render json: @order.errors, status: :unprocessable_entity }
             end
         end

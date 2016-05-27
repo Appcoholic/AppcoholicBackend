@@ -53,8 +53,13 @@ class OrdersController < ApplicationController
     
     def assign_courier
         @courier = User.find(params[:courier_id])
+        @stock_location = Location.find(params[:location_id])
         
+        # Assign the courier
         @order.courier = @courier
+        
+        # Assign the stock location
+        @order.location = @stock_location
         
         respond_to do |format|
             if @order.save

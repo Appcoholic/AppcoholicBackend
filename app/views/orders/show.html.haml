@@ -57,13 +57,16 @@
         %p
             %strong Assigned Courier:
             = "#{@order.courier.blank? ? 'None' : @order.courier.email }"
-            
-            
+        
         %p
             %strong Status:
             = display_order_status(@order.status)
         
     .col-md-6
+        %p
+            %strong Stock Location:
+            = "#{@order.location.blank? ? 'None' : @order.location.address }"
+    
         %p
             %strong Comments:
             %br

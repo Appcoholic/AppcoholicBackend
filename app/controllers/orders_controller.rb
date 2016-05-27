@@ -24,10 +24,8 @@ class OrdersController < ApplicationController
         respond_to do |format|
             if @order.save
                 format.html { redirect_to order_status_path(:token => @order.token), :flash => { :success => 'Order has been placed successfully.' } }
-                format.json { render :show, status: :created, location: @order }
             else
                 format.html { render :new, :flash => { :danger => 'There was an error trying to place your order. Please try again.' } }
-                format.json { render json: @order.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -63,11 +61,10 @@ class OrdersController < ApplicationController
         
         respond_to do |format|
             if @order.save
-                format.html { redirect_to @order, :flash => { :success => 'Courier successfully assigned to order.' } }
-                format.json { render :show, status: :assigned, location: @order }
+                flash[:success] = 'Courier and stock location successfully assigned to order.'
+                format.js
             else
-                format.html { render :new, :flash => { :danger => 'There was an error trying to assign the courier to this order. Please try again.' } }
-                format.json { render json: @order.errors, status: :unprocessable_entity }
+                format.js
             end
         end
     end

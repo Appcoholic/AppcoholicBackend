@@ -11,6 +11,9 @@ class Ability
             can :read, Order
             can :accept_order, Order
             can :complete_order, Order
+            
+            # Couriers can view their own profiles
+            can :show, User, :id => user.id
         else
             can :create, Order
             can :track_order, Order

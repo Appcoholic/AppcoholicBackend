@@ -74,7 +74,14 @@
                             
                         
                         %li.divider
-                        
+                        %li
+                            = link_to current_user do
+                                %i.fa.fa-user
+                                View My Profile
+                        %li
+                            = link_to edit_user_registration_path do
+                                %i.fa.fa-cog
+                                Edit My Account
                         %li
                             = link_to logout_path, method: :delete do
                                 %i.fa.fa-sign-out

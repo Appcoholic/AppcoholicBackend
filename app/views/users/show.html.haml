@@ -1,0 +1,41 @@
+.page-header
+    %h2
+        = @user.email
+        
+        .btn-group.pull-right
+            = link_to edit_user_registration_path, class: 'btn btn-default btn-xs' do
+                %i.fa.fa-cog
+                Edit Account
+    
+.row
+    .col-md-2
+        = image_tag @user.avatar.url(:thumb), class: 'img-rounded'
+    
+    .col-md-10
+        %p
+            %strong E-mail:
+            = @user.email
+            
+        %p
+            %strong Registered Date:
+            = @user.created_at.strftime("%A %B %d %Y")
+        
+        %p
+            %strong Last Sign-In:
+            = @user.last_sign_in_at.strftime("%A %B %d %Y")
+        
+        %p
+            %strong Salary:
+            
+          
+        %p
+            %strong Roles:
+            %ul.list-inline
+                - @user.roles.each do |role|
+                    %li= role.name
+                    
+%hr
+
+= link_to :back do
+    %i.fa.fa-arrow-left
+    Back

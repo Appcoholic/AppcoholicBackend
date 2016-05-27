@@ -10,7 +10,9 @@ class Ability
             can :read, Product
             can :read, Order
             can :accept_order, Order
-            can :complete_order, Order
+            
+            # Couriers can complete orders assigned to them
+            can :complete_order, Order, :courier_id => user.id
             
             # Couriers can view their own profiles
             can :show, User, :id => user.id

@@ -23,11 +23,9 @@ class OrdersController < ApplicationController
         
         respond_to do |format|
             if @order.save
-                format.html { redirect_to order_status_path, :flash => { :success => 'Order has been placed successfully.' } }
-                format.json { render :show, status: :created, location: @order }
+                format.html { redirect_to order_status_path(:token => @order.token), :flash => { :success => 'Order has been placed successfully.' } }
             else
                 format.html { render :new, :flash => { :danger => 'There was an error trying to place your order. Please try again.' } }
-                format.json { render json: @order.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -53,16 +51,20 @@ class OrdersController < ApplicationController
     
     def assign_courier
         @courier = User.find(params[:courier_id])
+        @stock_location = Location.find(params[:location_id])
         
+        # Assign the courier
         @order.courier = @courier
+        
+        # Assign the stock location
+        @order.location = @stock_location
         
         respond_to do |format|
             if @order.save
-                format.html { redirect_to @order, :flash => { :success => 'Courier successfully assigned to order.' } }
-                format.json { render :show, status: :assigned, location: @order }
+                flash[:success] = 'Courier and stock location successfully assigned to order.'
+                format.js
             else
-                format.html { render :new, :flash => { :danger => 'There was an error trying to assign the courier to this order. Please try again.' } }
-                format.json { render json: @order.errors, status: :unprocessable_entity }
+                format.js
             end
         end
     end

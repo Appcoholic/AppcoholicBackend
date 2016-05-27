@@ -1,0 +1,8 @@
+<% if @order.errors.any? %>
+    // Render errors in the Bootstrap modal
+    $("#error_messages").html("<%= escape_javascript(render partial: 'shared/errors', locals: { model: @order } ) %>");
+
+<% else %>
+    // Successful redirect to the order show view
+    window.location.href = "<%= order_path(@order) %>";
+<% end %>

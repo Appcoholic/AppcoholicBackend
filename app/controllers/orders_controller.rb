@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
         
         respond_to do |format|
             if @order.save
-                format.html { redirect_to order_status_path, :flash => { :success => 'Order has been placed successfully.' } }
+                format.html { redirect_to order_status_path(:token => @order.token), :flash => { :success => 'Order has been placed successfully.' } }
                 format.json { render :show, status: :created, location: @order }
             else
                 format.html { render :new, :flash => { :danger => 'There was an error trying to place your order. Please try again.' } }

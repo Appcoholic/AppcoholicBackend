@@ -18,9 +18,6 @@ class OrdersController < ApplicationController
     def create
         @order = Order.new(order_params)
         
-        # Generate a unique token for this order
-        @order.token = SecureRandom.urlsafe_base64(16)
-        
         respond_to do |format|
             if @order.save
                 format.html { redirect_to order_status_path(:token => @order.token), :flash => { :success => 'Order has been placed successfully.' } }

@@ -17,9 +17,15 @@ class Order < ActiveRecord::Base
     
     # ActiveRecord Callbacks
     before_save :calculate_total
+    before_save :generate_token
     after_save :decrease_stock, :if => :is_completed?
     
     private
+    
+        def generate_token
+            # Generate a unique token for this order
+            self.token = SecureRandom.urlsafe_base64(16)
+        end
     
         def is_completed?
            self.completed?

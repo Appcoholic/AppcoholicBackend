@@ -45,7 +45,8 @@
                         %td
                             L.
                             = item.product.unit_price
-                        %td= item.quantity
+                        %td
+                            %strong= display_order_quantity item.quantity
 
 %hr
 

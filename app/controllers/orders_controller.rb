@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
     
-    layout "home/home", only: [:new, :track_order, :order_status]
+    layout "home/home", only: [:new, :create, :track_order, :order_status]
     
     before_action :authenticate_user!, except: [:new, :create, :track_order, :order_status]
     load_and_authorize_resource except: [:new, :track_order, :order_status]

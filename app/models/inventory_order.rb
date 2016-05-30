@@ -6,11 +6,17 @@ class InventoryOrder < ActiveRecord::Base
     accepts_nested_attributes_for :inventory_items, reject_if: :all_blank, allow_destroy: true
     
     # ActiveRecord Callbacks
+    before_save :generate_token
     after_save :update_stock
     
     
     
     private
+    
+        def generate_token
+            # Generate a unique token for this inventory order
+            self.token = SecureRandom.urlsafe_base64(16)
+        end
     
         def update_stock
             # Update the Inventory table stock

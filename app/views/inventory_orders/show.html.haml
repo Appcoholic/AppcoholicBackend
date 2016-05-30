@@ -1,0 +1,54 @@
+.page-header
+    %h2
+        = @inventory_order.id
+    
+        .btn-group.pull-right
+            - if can? :update, @inventory_order
+                = link_to [:edit, @inventory_order], class: 'btn btn-default btn-xs' do
+                    %i.fa.fa-pencil
+                    Edit
+            
+            - if can? :destroy, @inventory_order
+                = link_to @inventory_order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do
+                    %i.fa.fa-trash
+                    Delete
+
+.row
+    .col-md-12
+        %p
+            %strong Stock Location:
+            = @inventory_order.location.address
+            
+        %p
+            %strong Issue Date:
+            = @inventory_order.created_at.strftime("%A %B %d %Y")
+            
+        %p
+            %strong Supplier:
+        
+.row
+    .col-md-12
+        %h3 Inventory Order Detail
+        
+        %table.table.table-responsive.table-striped.table-hover
+            %thead
+                %tr
+                    %th Product Name
+                    %th Product ID
+                    %th Unit Price
+                    %th Quantity
+            %tbody
+                - @inventory_order.inventory_items.each do |item|
+                    %tr
+                        %td= link_to item.product.name, item.product
+                        %td= item.product.product_id
+                        %td
+                            L.
+                            = item.product.unit_price
+                        %td= item.quantity
+
+%hr
+
+= link_to inventory_orders_path do
+    %i.fa.fa-arrow-left
+    Back

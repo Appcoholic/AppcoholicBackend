@@ -58,11 +58,17 @@
                                     %i.fa.fa-map-marker
                                     View Locations
                         
-                        - if can? :create, Inventory
+                        - if can? :read, InventoryOrder
                             %li
-                                = link_to new_inventory_path do
+                                = link_to inventory_orders_path do
+                                    %i.fa.fa-archive
+                                    View Inventory Orders
+                        
+                        - if can? :create, InventoryOrder
+                            %li
+                                = link_to new_inventory_order_path do
                                     %i.fa.fa-plus
-                                    Add New Inventory
+                                    New Inventory Order
                                 
                         %li.divider
                         %li.dropdown-header Orders

@@ -1,0 +1,10 @@
+%tr.nested-fields
+    %td{ width: "60%" }
+        = f.collection_select(:product_id, Product.all, :id, :name, {}, {:class => 'form-control input-sm'})
+        
+    %td.text-center{ width: "10%", style: "padding: 10px;" }
+        = f.text_field :quantity, class: 'form-control input-sm'
+    
+    %td.text-center{ width: "10%", style: "padding: 10px;" }
+        = link_to_remove_association f, class: 'btn btn-warning btn-sm' do
+            %i.fa.fa-times

@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
         @order.courier = @courier
         
         # Change the order's status to delivering
-        @order.status = :Delivering
+        @order.status = :delivering
         
         # Save the order
         respond_to do |format|
@@ -92,7 +92,7 @@ class OrdersController < ApplicationController
     
     def cancel_order
         # Change the order's status to delivering
-        @order.status = :Cancelled
+        @order.status = :cancelled
         
         # Save the order
         respond_to do |format|
@@ -108,7 +108,7 @@ class OrdersController < ApplicationController
     
     def complete_order
         # Change the order's status to delivering
-        @order.status = :Completed
+        @order.status = :completed
         
         # Save the order
         respond_to do |format|

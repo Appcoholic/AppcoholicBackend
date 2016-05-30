@@ -2,9 +2,9 @@
     .col-md-12
         
         .pull-right
-            = link_to new_inventory_path do
+            = link_to new_inventory_order_path do
                 %i.fa.fa-plus
-                Add Inventory
+                New Inventory Order
     
         %table.table.table-responsive.table-striped.table-hover
             %thead
@@ -23,7 +23,7 @@
                             L.
                             = item.product.unit_price
                         %td
-                            %span.label.label-warning= item.quantity
+                            = display_product_stock item.stock_quantity
                         %td
                             .btn-group
     

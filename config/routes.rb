@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   
   resources :locations
-  resources :inventories
+  resources :inventory_orders
   
   get 'dashboard', to: 'products#index'
   

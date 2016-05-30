@@ -1,0 +1,41 @@
+= form_for @inventory_order do |f|
+    
+    // ERROR MESSAGES
+    = render "shared/errors", model: @inventory_order
+    
+    .row
+        .col-md-12
+            .form-group
+                = f.label :location_id, 'Location'
+                = f.collection_select(:location_id, Location.all, :id, :address, {}, {:class => 'form-control'})
+                
+            .form-group
+                = f.label :provider
+                = f.text_field :provider, class: 'form-control'
+    
+    .row
+        .col-md-12
+            %legend Products
+            
+            .well
+                %table.table#inventory_items_table
+                    %thead
+                        %tr
+                            %th Product
+                            %th.text-center Quantity
+                            %th
+                    
+                    %tbody#inventory_items
+                        = f.fields_for :inventory_items do |item|
+                            = render 'inventory_item_fields', :f => item
+                        
+                = link_to_add_association f, :inventory_items, :"data-association-insertion-node" => "tbody#inventory_items" do
+                    %i.fa.fa-plus
+                    Add Product    
+    
+    %hr
+    
+    .form-group
+        = f.submit "Submit Order", class: 'btn btn-success'
+        
+    

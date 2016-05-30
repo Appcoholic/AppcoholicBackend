@@ -1,4 +1,7 @@
 = form_for @order do |f|
+    // ERROR MESSAGES
+    = render "shared/errors", model: @order
+
     .row
         .col-md-6
             .form-group

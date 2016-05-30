@@ -17,25 +17,25 @@
     .col-md-12
         .pull-right
             %ul.list-inline
-                - if (can? :assign_courier, User) && (@order.status == "Pending")
+                - if (can? :assign_courier, User) && (@order.pending?)
                     %li
                         %a{ href: "#", "data-toggle": "modal", "data-target": "#assign-courier" }
                             %i.fa.fa-user-plus
                             Assign/Change Courier
                             
-                - if (can? :accept_order, @order) && (@order.status == "Pending") && ( !current_user.has_role? :admin)
+                - if (can? :accept_order, @order) && (@order.pending?) && ( !current_user.has_role? :admin)
                     %li
                         %a{ href: "#", "data-toggle": "modal", "data-target": "#accept-order" }
                             %i.fa.fa-hand-pointer-o
                             Accept Order
                             
-                - if (can? :cancel_order, @order) && (['Delivering', 'Pending'].include? @order.status)
+                - if (can? :cancel_order, @order) && (@order.delivering? || @order.pending?)
                     %li
                         %a{ href: "#", "data-toggle": "modal", "data-target": "#cancel-order" }
                             %i.fa.fa-times
                             Cancel Order
                             
-                - if (can? :complete_order, @order) && (@order.status == "Delivering")
+                - if (can? :complete_order, @order) && (@order.delivering?)
                     %li
                         = link_to complete_order_path(:id => @order.id), method: :get, data: { confirm: 'Are you sure?' } do
                             %i.fa.fa-check

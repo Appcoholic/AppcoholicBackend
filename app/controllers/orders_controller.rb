@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
     
-    layout "home/home", only: [:new, :track_order, :order_status]
+    layout "home/home", only: [:new, :create, :track_order, :order_status]
     
     before_action :authenticate_user!, except: [:new, :create, :track_order, :order_status]
     load_and_authorize_resource except: [:new, :track_order, :order_status]
@@ -17,9 +17,6 @@ class OrdersController < ApplicationController
     
     def create
         @order = Order.new(order_params)
-        
-        # Generate a unique token for this order
-        @order.token = SecureRandom.urlsafe_base64(16)
         
         respond_to do |format|
             if @order.save
@@ -76,7 +73,7 @@ class OrdersController < ApplicationController
         @order.courier = @courier
         
         # Change the order's status to delivering
-        @order.status = :Delivering
+        @order.status = :delivering
         
         # Save the order
         respond_to do |format|
@@ -92,7 +89,7 @@ class OrdersController < ApplicationController
     
     def cancel_order
         # Change the order's status to delivering
-        @order.status = :Cancelled
+        @order.status = :cancelled
         
         # Save the order
         respond_to do |format|
@@ -108,7 +105,7 @@ class OrdersController < ApplicationController
     
     def complete_order
         # Change the order's status to delivering
-        @order.status = :Completed
+        @order.status = :completed
         
         # Save the order
         respond_to do |format|

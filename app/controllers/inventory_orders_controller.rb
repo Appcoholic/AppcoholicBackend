@@ -34,7 +34,7 @@ class InventoryOrdersController < ApplicationController
         end
     
         def inventory_order_params
-           params.require(:inventory_order).permit(:location_id, :inventory_items_attributes => [:id, :product_id, :inventory_order_id, :_destroy, :quantity]) 
+           params.require(:inventory_order).permit(:location_id, :provider, :inventory_items_attributes => [:id, :product_id, :inventory_order_id, :_destroy, :quantity]) 
         end
     
 end

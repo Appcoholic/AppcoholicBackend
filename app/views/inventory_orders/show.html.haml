@@ -24,7 +24,8 @@
             = @inventory_order.created_at.strftime("%A %B %d %Y")
             
         %p
-            %strong Supplier:
+            %strong Provider:
+            = @inventory_order.provider
         
 .row
     .col-md-12

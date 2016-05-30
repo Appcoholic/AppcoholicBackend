@@ -6,11 +6,13 @@ class InventoryOrder < ActiveRecord::Base
     accepts_nested_attributes_for :inventory_items, reject_if: :all_blank, allow_destroy: true
     
     # ActiveRecord Callbacks
-    after_save :add_to_stock
+    after_save :update_stock
+    
+    
     
     private
     
-        def add_to_stock
+        def update_stock
             # Update the Inventory table stock
             self.inventory_items.each do |item|
                 

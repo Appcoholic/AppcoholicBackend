@@ -14,20 +14,7 @@ class InventoryOrdersController < ApplicationController
 
     def create
         @inventory_order = InventoryOrder.new(inventory_order_params)
-        # location_id = params[:inventory][:location_id]
-        
-        # # Check if the item already exists in InventoryOrder table
-        # product_id = params[:inventory][:product_id]
-        
-        
-        # @inventory_order = InventoryOrder.where(:product_id => product_id, :location_id => location_id).first
-        
-        # if @inventory_order.blank?
-        #     @inventory_order = InventoryOrder.new(inventory_params)
-        # else
-        #     @inventory_order.quantity += params[:inventory][:quantity].to_i
-        # end
-       
+
         respond_to do |format|
             if @inventory_order.save
                 format.html { redirect_to @inventory_order, :flash => { :success => 'Inventory order entry created successfully.' } }

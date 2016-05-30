@@ -28,6 +28,7 @@ class OrdersController < ApplicationController
     end
     
     def show
+        @marker = find_marker
     end
     
     def destroy
@@ -44,6 +45,7 @@ class OrdersController < ApplicationController
         @token = params[:token]
         
         @order = Order.find_by_token(@token)
+        @marker = find_marker
     end
     
     def assign_courier
@@ -120,6 +122,15 @@ class OrdersController < ApplicationController
     end
     
     private
+    
+        def find_marker
+            # Order address location's map marker
+            @marker = Gmaps4rails.build_markers(@order) do |order, marker|
+                marker.lat order.latitude
+                marker.lng order.longitude
+            end
+            @marker
+        end
         
         def find_order
             @order = Order.find(params[:id])

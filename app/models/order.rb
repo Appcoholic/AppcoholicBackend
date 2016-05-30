@@ -20,6 +20,10 @@ class Order < ActiveRecord::Base
     before_save :generate_token
     after_save :decrease_stock, :if => :is_completed?
     
+    # Geocoder
+    geocoded_by :address
+    after_validation :geocode          # auto-fetch coordinates
+    
     private
     
         def generate_token

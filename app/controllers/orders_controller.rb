@@ -31,6 +31,19 @@ class OrdersController < ApplicationController
         @marker = find_marker
     end
     
+    def edit
+    end
+    
+    def update
+        respond_to do |format|
+            if @order.update(order_params)
+                format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+            else
+                format.html { render :edit }
+            end
+        end
+    end
+    
     def destroy
         @order.destroy
         respond_to do |format|

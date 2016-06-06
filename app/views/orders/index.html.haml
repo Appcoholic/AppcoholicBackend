@@ -16,7 +16,9 @@
                 %td= index+1
                 %td= link_to order.token, order
                 %td= order.address.truncate(13)
-                %td= order.created_at.strftime("%A %B %d %Y")
+                %td
+                    %span{"data-toggle": "tooltip", "data-placement": "top", title: "#{order.created_at.strftime('%A %B %d %Y')}"}
+                        = order.created_at.strftime("%d/%m/%Y")
                 %td= display_order_status(order.status)
                 %td
                     .btn-group

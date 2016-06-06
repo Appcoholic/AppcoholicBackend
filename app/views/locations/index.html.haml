@@ -7,13 +7,13 @@
                 Add New Location
                 
 - @locations.each do |location|
-    .media.well
+    .media
         .media-left.media-middle
             = link_to location, class: 'media-object' do
                 %i.fa.fa-map-marker.fa-4x
         .media-body
             %h3= link_to location.location_id, location, class: 'media-heading'
-            %p.small
+            %p
                 = location.latitude
                 ,
                 = location.longitude

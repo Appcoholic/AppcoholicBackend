@@ -11,7 +11,7 @@
             = form_tag({controller: "orders", action: "assign_courier"}, method: "get", remote: true) do
                 .modal-body
                     // ERROR MESSAGES
-                    #error_messages
+                    .error_messages
                 
                     .alert.alert-warning.text-center
                         %i.fa.fa-exclamation-triangle
@@ -26,10 +26,6 @@
                     .form-group
                         = label_tag 'Courier'
                         = select_tag :courier_id, options_from_collection_for_select(User.with_role(:courier), :id, :email), class: 'form-control'
-                        
-                    .form-group
-                        = label_tag 'Stock Location'
-                        = select_tag :location_id, options_from_collection_for_select(Location.all, :id, :address), class: 'form-control'
                         
                 .modal-footer
                     = submit_tag 'Assign Courier', class: 'btn btn-primary'

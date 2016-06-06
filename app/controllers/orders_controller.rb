@@ -49,14 +49,17 @@ class OrdersController < ApplicationController
     end
     
     def assign_courier
+        # First, find the nearest stock location, if there is one available
+        @order.location = Order.get_nearest_stock_location(@order)
+        
+        # Find the courier user
         @courier = User.find(params[:courier_id])
-        @stock_location = Location.find(params[:location_id])
         
         # Assign the courier
         @order.courier = @courier
         
-        # Assign the stock location
-        @order.location = @stock_location
+        # Change the status
+        @order.status = :delivering
         
         respond_to do |format|
             if @order.save
@@ -69,6 +72,10 @@ class OrdersController < ApplicationController
     end
     
     def accept_order
+        # First, find the nearest stock location, if there is one available
+        @order.location = Order.get_nearest_stock_location(@order)
+        
+        # Get the courier user
         @courier = current_user
         
         # Set the courier to the order
@@ -80,11 +87,10 @@ class OrdersController < ApplicationController
         # Save the order
         respond_to do |format|
             if @order.save
-                format.html { redirect_to @order, :flash => { :success => 'The order has been successully assigned to you. Please deliver it as soon as possible.' } }
-                format.json { render :show, status: :accepted, location: @order }
+                flash[:success] = 'The order has been successully assigned to you. Please deliver it as soon as possible.'
+                format.js
             else
-                format.html { render :new, :flash => { :danger => 'There was an error trying to assign this order to you. Please try again.' } }
-                format.json { render json: @order.errors, status: :unprocessable_entity }
+                format.js
             end
         end
     end

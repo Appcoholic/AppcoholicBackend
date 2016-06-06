@@ -1,9 +1,7 @@
-class CreateInventories < ActiveRecord::Migration
+class CreateInventoryOrders < ActiveRecord::Migration
   def change
-    create_table :inventories do |t|
-      t.integer :product_id
+    create_table :inventory_orders do |t|
       t.integer :location_id
-      t.integer :quantity
 
       t.timestamps null: false
     end

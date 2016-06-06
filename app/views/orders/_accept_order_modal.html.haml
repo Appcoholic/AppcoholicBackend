@@ -8,15 +8,21 @@
                     %i.fa.fa-warning
                     Accept This Order?
             
-            .modal-body
-
-                %p.text-center
-                    By accepting this order you accept taking the responsibility of delivering the client's requested products
-                    to their specified address on time.
+            = form_tag({controller: "orders", action: "accept_order"}, method: "get", remote: true) do
+                .modal-body
+                    // ERROR MESSAGES
+                    .error_messages
+                    
+                    .form-group
+                        = hidden_field_tag(:id, @order.id)
+                        = label_tag 'Order'
+                        = text_field_tag :token, @order.token, class: 'form-control', disabled: true
+    
+                    %p.text-center
+                        By accepting this order you accept taking the responsibility of delivering the client's requested products
+                        to their specified address on time.
                     
         
-            .modal-footer
-                = form_tag({controller: "orders", action: "accept_order"}, method: "get") do
-                    = hidden_field_tag(:id, @order.id)
+                .modal-footer
                     = submit_tag 'Accept Order', class: 'btn btn-primary'
                     %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel

@@ -1,0 +1,19 @@
+.well
+    = search_form_for @q do |f|
+    
+        .row
+            .col-md-5
+                .form-group
+                    = f.label :address_cont, 'Search'
+                    = f.search_field :address_cont, placeholder: 'Example: Apartamento Colonia Miraflores', class: 'form-control input-sm'
+                    
+            .col-md-3
+                .form-group
+                    = f.label :status_eq, 'Order Status'
+                    = f.select(:status_eq, options_for_select([['Pending', 0], ['Delivering', 1], ['Completed', 2], ['Cancelled', 3]], Order), {:include_blank => 'All'}, { :class => 'form-control input-sm' })
+                    
+            .col-md-3
+                .form-group
+                    %br
+                    = f.submit 'Search', class: 'btn btn-success btn-sm'
+                        

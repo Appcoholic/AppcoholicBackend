@@ -23,7 +23,8 @@
         
         %p
             %strong Last Sign-In:
-            = @user.last_sign_in_at.strftime("%A %B %d %Y")
+            - unless @user.last_sign_in_at.nil?
+                = @user.last_sign_in_at.strftime("%A %B %d %Y")
         
         %p
             %strong Salary:

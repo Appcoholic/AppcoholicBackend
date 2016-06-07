@@ -1,5 +1,8 @@
 .page-header
     %h2 Orders
+    
+// SEARCH ORDERS
+= render 'search_orders'
             
 %table.table.table-responsive.table-striped.table-hover
     %thead
@@ -32,3 +35,6 @@
                             = link_to order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' do
                                 %i.fa.fa-trash
     
+// PAGINATION
+.text-center
+    = will_paginate @orders, renderer: BootstrapPagination::Rails, class: 'pagination-sm'

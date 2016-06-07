@@ -1,14 +1,22 @@
 class OrdersController < ApplicationController
     
+    # Layout
     layout "home/home", only: [:new, :create, :track_order, :order_status]
     
+    # Authentication & Authorization
     before_action :authenticate_user!, except: [:new, :create, :track_order, :order_status]
     load_and_authorize_resource except: [:new, :track_order, :order_status]
     
+    # Find Order
     before_action :find_order, except: [:index, :new, :create, :track_order, :order_status]
     
     def index
-        @orders = Order.all.order("created_at DESC")
+        # Ransack Search
+        @q = Order.ransack(params[:q])
+        @orders = @q.result(distinct: true).order("created_at DESC")
+        
+        # Pagination
+        @orders = @orders.paginate(:page => params[:page], :per_page => 10)
     end
     
     def new

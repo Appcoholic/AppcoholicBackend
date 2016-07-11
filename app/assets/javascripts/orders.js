@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
     // Enable Bootstrap Tooltips
-    $('[data-toggle="tooltip"]').tooltip();
+    //$('[data-toggle="tooltip"]').tooltip();
     
     $("#orders_table").on("cocoon:before-insert change", ".product-select", function() {
         

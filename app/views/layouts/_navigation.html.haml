@@ -1,0 +1,68 @@
+#left-navigation
+    .row
+        .col-md-12
+            .text-center
+                = image_tag current_user.avatar.url(:thumb), class: 'img-rounded'
+                %h5
+                    %strong= current_user.email
+            
+                %hr
+    
+    .row
+        .col-md-12
+            %ul.nav.nav-pills.nav-stacked
+                - if user_signed_in?
+                
+                    %li.dropdown-header Orders
+                    - if can? :read, Order
+                        %li
+                            = link_to orders_path do
+                                %i.fa.fa-shopping-cart
+                                View Orders
+                
+                    %li.dropdown-header Products
+                    - if can? :read, Product
+                        %li
+                            = link_to products_path do
+                                %i.fa.fa-glass
+                                View Products
+                    
+                    - if can? :create, Product
+                        %li
+                            = link_to new_product_path do
+                                %i.fa.fa-plus
+                                Add New Product
+                            
+                            
+                    %li.dropdown-header Users
+                    - if can? :read, User
+                        %li
+                            = link_to users_path do
+                                %i.fa.fa-user
+                                View Users
+                    
+                    - if can? :create, User
+                        %li
+                            = link_to new_user_path do
+                                %i.fa.fa-plus
+                                Add New User
+                    
+                    
+                    %li.dropdown-header Inventory
+                    - if can? :read, Location
+                        %li
+                            = link_to locations_path do
+                                %i.fa.fa-map-marker
+                                View Storage Locations
+                    
+                    - if can? :read, InventoryOrder
+                        %li
+                            = link_to inventory_orders_path do
+                                %i.fa.fa-archive
+                                View Inventory Orders
+                    
+                    - if can? :create, InventoryOrder
+                        %li
+                            = link_to new_inventory_order_path do
+                                %i.fa.fa-plus
+                                New Inventory Order

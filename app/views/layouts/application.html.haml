@@ -4,32 +4,36 @@
 %head
     %title Likor
     
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    
-    / Bootstrap
+    / Bootstrap Sandstone
     = stylesheet_link_tag 'https://bootswatch.com/sandstone/bootstrap.min.css'
     = javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', "data-turbolinks-eval" => false
     
     / FontAwesome
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
     
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    
     = csrf_meta_tags
     
     /= favicon_link_tag 'favicon.ico'
     
 %body
-    .container
+    .container-fluid
         .row
-            .col-md-10.col-md-offset-1
+            .col-md-12
                 // NAVBAR
                 = render 'layouts/navbar'
 
+        .row
+            /LEFT NAVIGATION
+            .col-md-2
+                = render 'layouts/navigation'
+            
+            /MAIN CONTENT AREA
+            .col-md-9
+
                 // ALERTS
-                = render 'layouts/alerts'
-                
-                // CONTENT
-                .panel.panel-default
-                    .panel-body
-                        = yield
-                        
+                /= render 'layouts/alerts'
+                = yield
+            

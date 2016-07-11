@@ -1,6 +1,4 @@
-%br
-    
-%nav.navbar.navbar-default{role: "navigation"}
+%nav.navbar.navbar-default.navbar-static-top{role: "navigation"}
     / Brand and toggle get grouped for better mobile display
     .navbar-header
         %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
@@ -16,82 +14,15 @@
             
         %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
-                %li.dropdown
-                    %a{ :class => 'dropdown-toggle', "data-toggle" => 'dropdown', :role => 'button', "aria-expanded" => false }
-                        = current_user.email 
-                        %span.caret
-                    %ul{:class => 'dropdown-menu', :role => 'menu' }
-                        %li.dropdown-header Products
-                        - if can? :read, Product
-                            %li
-                                = link_to products_path do
-                                    %i.fa.fa-glass
-                                    View Products
-                        
-                        - if can? :create, Product
-                            %li
-                                = link_to new_product_path do
-                                    %i.fa.fa-plus
-                                    Add New Product
-                                
-                        %li.divider
-                                
-                        %li.dropdown-header Users
-                        - if can? :read, User
-                            %li
-                                = link_to users_path do
-                                    %i.fa.fa-user
-                                    View Users
-                        
-                        - if can? :create, User
-                            %li
-                                = link_to new_user_path do
-                                    %i.fa.fa-plus
-                                    Add New User
-                        
-                        %li.divider
-                        
-                        %li.dropdown-header Inventory
-                        - if can? :read, Location
-                            %li
-                                = link_to locations_path do
-                                    %i.fa.fa-map-marker
-                                    View Locations
-                        
-                        - if can? :read, InventoryOrder
-                            %li
-                                = link_to inventory_orders_path do
-                                    %i.fa.fa-archive
-                                    View Inventory Orders
-                        
-                        - if can? :create, InventoryOrder
-                            %li
-                                = link_to new_inventory_order_path do
-                                    %i.fa.fa-plus
-                                    New Inventory Order
-                                
-                        %li.divider
-                        %li.dropdown-header Orders
-                        - if can? :read, Order
-                            %li
-                                = link_to orders_path do
-                                    %i.fa.fa-shopping-cart
-                                    View Orders
-                            
-                        
-                        %li.divider
-                        %li
-                            = link_to current_user do
-                                %i.fa.fa-user
-                                View My Profile
-                        %li
-                            = link_to edit_user_registration_path do
-                                %i.fa.fa-cog
-                                Edit My Account
-                        %li
-                            = link_to logout_path, method: :delete do
-                                %i.fa.fa-sign-out
-                                Log Out
+                %li
+                    = link_to current_user do
+                        %i.fa.fa-user.fa-2x
+                %li
+                    = link_to edit_user_registration_path do
+                        %i.fa.fa-cog.fa-2x
+                %li
+                    = link_to logout_path, method: :delete do
+                        %i.fa.fa-sign-out.fa-2x
                 
           
-        / /.navbar-collapse
+    / /.navbar-collapse
